@@ -1,0 +1,28 @@
+
+//insight indicator colors
+$inc-color: hsl(163, 72%, 41%);
+$dec-color: hsl(356, 69%, 56%);
+
+//social media colors
+$facebook: hsl(208, 92%, 53%);
+$twitter: hsl(203, 89%, 53%);
+$instagram: hsl(37, 97%, 70%), hsl(329, 70%, 58%);
+$youtube: hsl(348, 97%, 39%);
+
+//light theme variables
+$light-text-color: hsl(228, 12%, 44%);
+$light-maintext-color: hsl(230, 17%, 14%);
+$light-card-bg: hsl(227, 47%, 96%);
+$light-bg-color: hsl(0, 0%, 100%);
+$light-bg-pattern: hsl(225, 100%, 98%); 
+$light-toggle: hsl(230, 22%, 74%);
+$light-card-hover:rgb(225, 227, 240);
+
+//dark theme variables
+$dark-text-color: hsl(228, 34%, 66%);
+$dark-maintext-color: hsl(0, 0%, 100%);
+$dark-card-bg: hsl(228, 28%, 20%);
+$dark-bg-color: hsl(230, 17%, 14%);
+$dark-bg-pattern: hsl(232, 19%, 15%);
+$dark-toggle: hsl(210, 78%, 56%), hsl(146, 68%, 55%);
+$dark-card-hover:rgb(51, 58, 86);

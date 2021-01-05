@@ -1,0 +1,352 @@
+@import "./reset";
+@import "./variables";
+
+@mixin flexbox($justify) {
+    display: flex;
+    justify-content: $justify;
+    align-items: center;
+}
+
+.landing {
+    min-height: 100vh;
+    background-color: $light-bg-color;
+    padding: 2rem 1.8rem;
+    position: relative;
+    z-index: 1;
+    transition: .2s ease;
+
+    @media (min-width: 768px) {
+        padding: 2.5rem 1.8rem;
+    }
+    
+    &::before {
+        content: "";
+        width: 100%;
+        height: 200px;
+        background-color: $light-bg-pattern;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 0 0 1rem 1rem;
+        transition: .2s ease;
+    }
+
+    //dark mode for landing
+    &.dark {
+        background-color: $dark-bg-color;
+
+        &::before {
+            content: "";
+            width: 100%;
+            height: 200px;
+            background-color: $dark-bg-pattern;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: 0 0 1rem 1rem;
+        }
+    }
+
+    .landing-inner {
+        @media (min-width: 768px) {
+            width: 88%;
+            margin: 0 auto;
+        }
+
+        .header {
+            h1 {
+                color: $light-maintext-color;
+                font-size: 1.5rem;
+                transition: .2s ease;
+            }
+
+            p  {
+                color: $light-text-color;
+                font-size: .8rem;
+                font-weight: 700;
+                margin: 3px 0 1rem 0;
+                transition: .2s ease;
+            }
+
+            .toggle-btn {
+                @include flexbox(space-between);
+
+                margin: 1rem 0;
+
+                p {
+                    margin: 0 1rem 0 0;
+                }
+
+                .switch {
+                    width: 50px;
+                    height: 25px;
+                    background-color: $light-toggle;
+                    border-radius: 2rem;
+                    position: relative;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: linear-gradient(to right, $dark-toggle);
+                    }
+
+                    .switch-indicator {
+                        width: 18px;
+                        height: 18px;
+                        background-color: $light-bg-color;
+                        border-radius: 50%;
+                        position: absolute;
+                        top: 50%;
+                        left: 75%;
+                        transform: translate(-50%, -50%);
+                        transition: left .2s ease;
+                    }
+
+                    &.dark {
+                        background: linear-gradient(to right, $dark-toggle);
+
+                        .switch-indicator {
+                            left: 25%;
+                            background-color: $dark-bg-pattern
+                        }
+                    }
+                }
+            }
+
+            //dark mode for header
+            &.dark {
+                h1 {
+                    color: $dark-maintext-color;
+                }
+
+                p {
+                    color: $dark-text-color;
+                }
+            }
+            
+            @media (min-width: 768px) {
+                @include flexbox(space-between);
+
+                hr {
+                    display: none;
+                }
+
+                h1 {
+                    font-size: 1.7rem;
+                }
+
+                p {
+                    font-size: .9rem;
+                }
+            }
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 2rem;
+
+            position: relative;
+            z-index: 999;
+            margin: 2rem 0;
+            
+            .card {
+                padding: 1.5rem;
+                background-color: $light-card-bg;
+                text-align: center;
+                border-radius: .5rem;
+                cursor: pointer;
+                transition: .2s ease;
+
+                &:hover {
+                    background-color: $light-card-hover;
+                }
+
+                &.facebook {
+                    border-top: 4px solid $facebook;
+                }
+                &.twitter {
+                    border-top: 4px solid $twitter;
+                }
+                
+                &.instagram {
+                    border-top: 4px solid transparent;
+                    position: relative;
+                    background-clip: padding-box;
+      
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        z-index: -1;
+                        margin: -4px 1px 4px;
+                        border-radius: inherit;
+                        background: linear-gradient(to right, $instagram);
+                    }
+                }
+
+                &.youtube {
+                    border-top: 4px solid $youtube;
+                }
+
+                .soc-med {
+                    @include flexbox(center);
+
+                    .username {
+                        font-size: .8rem;
+                        font-weight: 700;
+                        color: $light-text-color;
+                        margin-left: .5rem;
+                    }
+                }
+
+                .followers {
+                    margin: 1.5rem 0;
+                    
+                    .count {
+                        color: $light-maintext-color;
+                        font-size: 3rem;
+                        transition: .2s ease;
+                    }
+
+                    p {
+                        text-transform: uppercase;
+                        color: $light-text-color;
+                        font-size: .8rem;
+                        letter-spacing: 2px;
+                        transition: .2s ease;
+                    }
+                }
+
+                .insight {
+                    font-size: .8rem;
+                    font-weight: 700;
+
+                    &.inc {
+                        color: $inc-color;
+
+                        &::before {
+                            content: url("/images/icon-up.svg");
+                            vertical-align: 10%;
+                            margin-right: .5rem;
+                        }
+                    }
+
+                    &.dec {
+                        color: $dec-color;
+
+                        &::before {
+                            content: url("/images/icon-down.svg");
+                            vertical-align: 10%;
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+            }
+            //dark mode for container
+            &.dark {
+                .card {
+                    background-color: $dark-card-bg;
+
+                    &:hover {
+                        background-color: $dark-card-hover;
+                    }
+                    
+                    .username, p {
+                        color: $dark-text-color;
+                    }
+                }
+
+                .followers {
+                    .count {
+                        color: $dark-maintext-color;
+                    }
+                }
+            }
+        }
+
+        .overview {
+            margin: 2rem 0;
+
+            h1 {
+                color: $light-text-color;
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+                transition: .2s ease;
+            }
+
+            .container {
+                grid-row-gap: 1.5rem;
+
+                .event {
+                    @include flexbox(space-between);
+    
+                    p  {
+                        color: $light-text-color;
+                        font-size: .8rem;
+                        font-weight: 700;
+                        transition: .2s ease;
+
+                        @media (min-width: 768px) {
+                            font-size: .9rem;
+                        }
+                    }
+                }
+    
+                .data {
+                    @include flexbox(space-between);
+                    align-items: flex-end;   
+    
+                    margin-top: 1.5rem;
+    
+                    h2 {
+                        color: $light-maintext-color;
+                        font-size: 1.8rem;
+                        line-height: 1.5rem;
+                        transition: .2s ease;
+                    }
+                }
+            }
+            //dark mode for container
+            &.dark {
+                h1 {
+                    color: $dark-maintext-color;
+                }
+
+                .container {
+                    .card {
+                        background-color: $dark-card-bg;
+
+                        .event p {
+                            color: $dark-text-color;
+                        }
+
+                        .data h2 {
+                            color: $dark-maintext-color;
+                        }
+
+                        &:hover {
+                            background-color: rgb(51, 58, 86);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.attribution {
+    font-size: 11px;
+    text-align: center;
+    padding: 1rem 0;
+    
+    a {
+        color: hsl(228, 45%, 44%);
+    }
+}
